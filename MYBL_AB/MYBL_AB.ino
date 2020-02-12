@@ -43,9 +43,15 @@ const FunctionPointer PROGMEM  mainGameLoop[] = {
 
 void setup()
 {
+#ifdef MODMATIC_DOTMG_CART_SAMD21E
+  arduboy.setColorTheme(THEME_DMG);
+  arduboy.begin();
+  arduboy.invert(true);
+#else
   arduboy.boot();                                           // begin with the boot logo en setting up the device to work
   arduboy.audio.begin();
   arduboy.bootLogoSpritesSelfMasked();
+#endif
   arduboy.setFrameRate(60);                                 // set the frame rate of the game at 60 fps
   loadSetEEPROM();
 }

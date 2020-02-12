@@ -293,7 +293,7 @@ void drawKid()
       }
       //--kid.balloons;
     }
-    
+
     if (kid.isBalloon)
     {
       int commonx = kidcam.x - (6 * kid.direction);

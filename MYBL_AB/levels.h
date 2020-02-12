@@ -50,7 +50,7 @@ byte gridGetTile(int8_t x, int8_t y) {
   f = r | (t << 1) | (l << 2) | (b << 3);
 
   return f;
-  
+
   /*f = 0;
   f |= t << 3;
   f |= l << 2;

@@ -12,7 +12,7 @@ void checkInputs()
   if (kid.balloons <= 0)
     return; // Cannot control player if dead
 
-    
+
   cam.offset = vec2(0, 0);
   kid.isWalking = false;
   if (arduboy.pressed(DOWN_BUTTON))
@@ -23,7 +23,7 @@ void checkInputs()
   {
     cam.offset.y = CAMERA_OFFSET;
   }
-  if (!kid.isSucking) 
+  if (!kid.isSucking)
   {
     if (arduboy.pressed(LEFT_BUTTON))
     {
@@ -65,6 +65,19 @@ void checkInputs()
     }
   }
   kid.isSucking = false;
+
+#ifdef MODMATIC_DOTMG_CART_SAMD21E
+  if (arduboy.pressed(B_BUTTON))
+  {
+    kid.isBalloon = false;
+    kid.isSucking = true;
+  }
+
+  if (arduboy.justPressed(START_BUTTON))
+  {
+    gameState = STATE_GAME_PAUSE;
+  }
+#else
   if (arduboy.pressed(A_BUTTON))
   {
     if (arduboy.pressed(DOWN_BUTTON))
@@ -75,6 +88,7 @@ void checkInputs()
       kid.isSucking = true;
     }
   }
+#endif
   /*if (arduboy.pressed(A_BUTTON + DOWN_BUTTON))  gameState = STATE_GAME_PAUSE;
   if (arduboy.pressed(A_BUTTON) && !kid.isBalloon)
   {
@@ -84,7 +98,11 @@ void checkInputs()
     kid.isSucking = false;*/
 
   // Jump Button
+#ifdef MODMATIC_DOTMG_CART_SAMD21E
+  if (arduboy.justPressed(A_BUTTON))
+#else
   if (arduboy.justPressed(B_BUTTON))
+#endif
   {
     if (kid.speed.y == 0 && kid.isJumping == false && kid.isLanding == false)
     {
@@ -108,7 +126,11 @@ void checkInputs()
       }
     }
   }
+#ifdef MODMATIC_DOTMG_CART_SAMD21E
+  if (!arduboy.pressed(A_BUTTON))
+#else
   if (!arduboy.pressed(B_BUTTON))
+#endif
   {
     kid.isBalloon = false;
     if (kid.isJumping) kid.jumpLetGo = true;

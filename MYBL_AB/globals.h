@@ -12,8 +12,13 @@
 //#define HARD_MODE
 
 #include <Arduino.h>
-#include <Arduboy2.h>
-#include <ArduboyTones.h>
+#ifdef MODMATIC_DOTMG_CART_SAMD21E
+  #include <Arduboy2DotMG.h>
+  #include <ArduboyTonesDotMG.h>
+#else
+  #include <Arduboy2.h>
+  #include <ArduboyTones.h>
+#endif
 #include "vec2.h"
 #include "bitmaps.h"
 
@@ -71,7 +76,11 @@ struct HighRect
     int height;
 };
 
-Arduboy2Base arduboy;
+#ifdef MODMATIC_DOTMG_CART_SAMD21E
+  Arduboy2 arduboy;
+#else
+  Arduboy2Base arduboy;
+#endif
 Sprites sprites;
 ArduboyTones sound(arduboy.audio.enabled);
 
@@ -99,6 +108,7 @@ byte mapTimer = 10;
 
 void loadSetEEPROM()
 {
+#ifndef MODMATIC_DOTMG_CART_SAMD21E
   if ((EEPROM.read(OFFSET_MYBL_START) != GAME_ID) && (EEPROM.read(OFFSET_MYBL_END) != GAME_ID))
   {
     EEPROM.put(OFFSET_MYBL_START, (byte)GAME_ID); // game id
@@ -109,6 +119,7 @@ void loadSetEEPROM()
     EEPROM.put(OFFSET_HSCORE, (unsigned long)0); // clear high score
     EEPROM.put(OFFSET_MYBL_END, (byte)GAME_ID); // game id
   }
+#endif
 }
 
 // This is a replacement for the collide() function in the Arduboy2 library.
