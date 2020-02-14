@@ -86,14 +86,13 @@ void stateMenuInfo()
   sprites.drawSelfMasked(43, 2, badgeMysticBalloon, 0);
   sprites.drawSelfMasked(37, 0, stars, sparkleFrames);
   sprites.drawSelfMasked(40, 48, madeBy, 0);
-#ifndef MODMATIC_DOTMG_CART_SAMD21E
+
   EEPROM.get(OFFSET_HSCORE, scorePlayer);
   if (EEPROM.read(OFFSET_COINSHS) == TOTAL_COINS)
   {
     sprites.drawSelfMasked(21, 28, badgeSuper, 0);
   }
   else
-#endif
   {
     sprites.drawSelfMasked(28, 28, badgeBorder, 0);
   }

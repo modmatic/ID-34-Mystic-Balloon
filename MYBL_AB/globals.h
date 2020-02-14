@@ -108,7 +108,6 @@ byte mapTimer = 10;
 
 void loadSetEEPROM()
 {
-#ifndef MODMATIC_DOTMG_CART_SAMD21E
   if ((EEPROM.read(OFFSET_MYBL_START) != GAME_ID) && (EEPROM.read(OFFSET_MYBL_END) != GAME_ID))
   {
     EEPROM.put(OFFSET_MYBL_START, (byte)GAME_ID); // game id
@@ -119,7 +118,6 @@ void loadSetEEPROM()
     EEPROM.put(OFFSET_HSCORE, (unsigned long)0); // clear high score
     EEPROM.put(OFFSET_MYBL_END, (byte)GAME_ID); // game id
   }
-#endif
 }
 
 // This is a replacement for the collide() function in the Arduboy2 library.

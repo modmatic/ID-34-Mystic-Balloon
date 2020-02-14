@@ -34,21 +34,12 @@ void stateMenuPlayNew()
 
 void stateMenuPlayContinue()
 {
-#ifdef MODMATIC_DOTMG_CART_SAMD21E
-  level = 1;
-  totalCoins = 0;
-#else
   level = EEPROM.read(OFFSET_LEVEL);
   totalCoins = EEPROM.read(OFFSET_COINS);
-#endif
   coinsCollected = 0;
   balloonsLeft = 0;
-#ifdef MODMATIC_DOTMG_CART_SAMD21E
-  scorePlayer = 0;
-#else
   //scorePlayer = 0;
   EEPROM.get(OFFSET_SCORE, scorePlayer);
-#endif
   globalCounter = 0;
   kid.balloons = 3;
   gameState = STATE_GAME_NEXT_LEVEL;
@@ -98,12 +89,10 @@ void stateGameNextLevel()
     return;
   }*/
 
-#ifndef MODMATIC_DOTMG_CART_SAMD21E
   // Update EEPROM
   EEPROM.put(OFFSET_LEVEL, level);
   EEPROM.put(OFFSET_COINS, totalCoins);
   EEPROM.put(OFFSET_SCORE, scorePlayer);
-#endif
 
   //if (nextLevelIsVisible)
   //{
@@ -112,14 +101,12 @@ void stateGameNextLevel()
     sprites.drawSelfMasked(35, 4, badgeNextLevel, 0);
     drawNumbers(78, 13, FONT_BIG, DATA_LEVEL);
   }
-#ifndef MODMATIC_DOTMG_CART_SAMD21E
   else
   {
     EEPROM.put(OFFSET_LEVEL, (byte)LEVEL_TO_START_WITH - 1);
     // Score remains after completing game? (no)
     EEPROM.put(OFFSET_SCORE, (unsigned long)0);
   }
-#endif
   drawNumbers(43, 49, FONT_BIG, DATA_SCORE);
   //}
 
@@ -196,13 +183,11 @@ void stateGameOver()
   drawNumbers(43, 49, FONT_BIG, DATA_SCORE);
 
   unsigned long highscore = 0;
-#ifndef MODMATIC_DOTMG_CART_SAMD21E
   EEPROM.get(OFFSET_HSCORE, highscore);
   if (scorePlayer > highscore) {
     EEPROM.put(OFFSET_COINSHS, totalCoins);
     EEPROM.put(OFFSET_HSCORE, scorePlayer);
   }
-#endif
 
   if (arduboy.justPressed(A_BUTTON | B_BUTTON))
   {
