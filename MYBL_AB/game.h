@@ -160,7 +160,7 @@ void stateGamePlaying()
 void stateGamePause()
 {
   sprites.drawSelfMasked(47, 17, badgePause, 0);
-#ifdef MODMATIC_DOTMG_CART_SAMD21E
+#ifdef DOTMG_CART_SAMD51
   if (arduboy.justPressed(START_BUTTON))
 #else
   if (arduboy.justPressed(A_BUTTON | B_BUTTON))

@@ -139,7 +139,7 @@ void stateMenuPlaySelect()
     sound.tone(300, 20);
   }
   sprites.drawPlusMask(48, 18 + 9 * cont, selector_plus_mask, 0);
-#ifdef MODMATIC_DOTMG_CART_SAMD21E
+#ifdef DOTMG_CART_SAMD51
   if (arduboy.justPressed(A_BUTTON))
 #else
   if (arduboy.justPressed(B_BUTTON))
@@ -149,7 +149,7 @@ void stateMenuPlaySelect()
     cont = 0;
     sound.tone(425, 20);
   }
-#ifdef MODMATIC_DOTMG_CART_SAMD21E
+#ifdef DOTMG_CART_SAMD51
   if (arduboy.justPressed(B_BUTTON))
 #else
   if (arduboy.justPressed(A_BUTTON))

@@ -43,7 +43,7 @@ const FunctionPointer PROGMEM  mainGameLoop[] = {
 
 void setup()
 {
-#ifdef MODMATIC_DOTMG_CART_SAMD21E
+#ifdef DOTMG_CART_SAMD51
   arduboy.setColorTheme(THEME_DMG);
   arduboy.begin();
   arduboy.invert(true);
@@ -64,4 +64,3 @@ void loop() {
   ((FunctionPointer) pgm_read_word (&mainGameLoop[gameState]))();
   arduboy.display();
 }
-

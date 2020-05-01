@@ -12,7 +12,7 @@
 //#define HARD_MODE
 
 #include <Arduino.h>
-#ifdef MODMATIC_DOTMG_CART_SAMD21E
+#ifdef DOTMG_CART_SAMD51
   #include <Arduboy2DotMG.h>
   #include <ArduboyTonesDotMG.h>
 #else
@@ -76,7 +76,7 @@ struct HighRect
     int height;
 };
 
-#ifdef MODMATIC_DOTMG_CART_SAMD21E
+#ifdef DOTMG_CART_SAMD51
   Arduboy2 arduboy;
 #else
   Arduboy2Base arduboy;

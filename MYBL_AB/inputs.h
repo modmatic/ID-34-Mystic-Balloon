@@ -66,7 +66,7 @@ void checkInputs()
   }
   kid.isSucking = false;
 
-#ifdef MODMATIC_DOTMG_CART_SAMD21E
+#ifdef DOTMG_CART_SAMD51
   if (arduboy.pressed(B_BUTTON))
   {
     kid.isBalloon = false;
@@ -98,7 +98,7 @@ void checkInputs()
     kid.isSucking = false;*/
 
   // Jump Button
-#ifdef MODMATIC_DOTMG_CART_SAMD21E
+#ifdef DOTMG_CART_SAMD51
   if (arduboy.justPressed(A_BUTTON))
 #else
   if (arduboy.justPressed(B_BUTTON))
@@ -126,7 +126,7 @@ void checkInputs()
       }
     }
   }
-#ifdef MODMATIC_DOTMG_CART_SAMD21E
+#ifdef DOTMG_CART_SAMD51
   if (!arduboy.pressed(A_BUTTON))
 #else
   if (!arduboy.pressed(B_BUTTON))
